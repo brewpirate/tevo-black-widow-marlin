@@ -161,15 +161,9 @@
       else if (seen_c2) {
         d &= 0x3Fu;
         #ifndef MAPPER_ONE_TO_ONE
-<<<<<<< HEAD
-          HARDWARE_CHAR_OUT((char)pgm_read_byte_near(utf_recode + d + (utf_hi_char << 6) - 0x20));
-        #else
-          HARDWARE_CHAR_OUT((char)(0x80u + (utf_hi_char << 6) + d)) ;
-=======
           HARDWARE_CHAR_OUT(pgm_read_byte_near(utf_recode + d + (utf_hi_char << 6) - 0x20));
         #else
           HARDWARE_CHAR_OUT(0x80u + (utf_hi_char << 6) + d);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
         #endif
       }
       else {
@@ -177,11 +171,7 @@
       }
     }
     else {
-<<<<<<< HEAD
-      HARDWARE_CHAR_OUT((char) c );
-=======
       HARDWARE_CHAR_OUT(c);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
     }
     seen_c2 = false;
     return 1;
@@ -213,11 +203,7 @@
           case 0xB1u: d = 0xFDu; break;
           default: d = '?';
         }
-<<<<<<< HEAD
-        HARDWARE_CHAR_OUT((char)d) ;
-=======
         HARDWARE_CHAR_OUT(d);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
       }
       else if (seen_c5) {
         switch(d) {
@@ -225,24 +211,14 @@
           case 0x9Fu: d = 0xFEu; break;
           default: d = '?';
         }
-<<<<<<< HEAD
-        HARDWARE_CHAR_OUT((char)d) ;
-=======
         HARDWARE_CHAR_OUT(d);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
       }
       else if (seen_c2) {
         d &= 0x3Fu;
         #ifndef MAPPER_ONE_TO_ONE
-<<<<<<< HEAD
-          HARDWARE_CHAR_OUT((char)pgm_read_byte_near(utf_recode + d + (utf_hi_char << 6) - 0x20));
-        #else
-          HARDWARE_CHAR_OUT((char)(0x80u + (utf_hi_char << 6) + d)) ;
-=======
           HARDWARE_CHAR_OUT(pgm_read_byte_near(utf_recode + d + (utf_hi_char << 6) - 0x20));
         #else
           HARDWARE_CHAR_OUT(0x80u + (utf_hi_char << 6) + d);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
         #endif
       }
       else {
@@ -250,11 +226,7 @@
       }
     }
     else {
-<<<<<<< HEAD
-      HARDWARE_CHAR_OUT((char) c );
-=======
       HARDWARE_CHAR_OUT(c);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
     }
     seen_c2 = seen_c4 = seen_c5 = false;
     return 1;
@@ -275,15 +247,9 @@
       else if (seen_ce) {
         d &= 0x3F;
         #ifndef MAPPER_ONE_TO_ONE
-<<<<<<< HEAD
-          HARDWARE_CHAR_OUT((char)pgm_read_byte_near(utf_recode + d + (utf_hi_char << 6) - 0x20));
-        #else
-          HARDWARE_CHAR_OUT((char)(0x80 + (utf_hi_char << 6) + d)) ;
-=======
           HARDWARE_CHAR_OUT(pgm_read_byte_near(utf_recode + d + (utf_hi_char << 6) - 0x20));
         #else
           HARDWARE_CHAR_OUT(0x80 + (utf_hi_char << 6) + d);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
         #endif
       }
       else {
@@ -291,11 +257,7 @@
       }
     }
     else {
-<<<<<<< HEAD
-      HARDWARE_CHAR_OUT((char)c);
-=======
       HARDWARE_CHAR_OUT(c);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
     }
     seen_ce = false;
     return 1;
@@ -316,15 +278,9 @@
       else if (seen_ce) {
         d &= 0x3F;
         #ifndef MAPPER_ONE_TO_ONE
-<<<<<<< HEAD
-          HARDWARE_CHAR_OUT((char)pgm_read_byte_near(utf_recode + d + (utf_hi_char << 6) - 0x20));
-        #else
-          HARDWARE_CHAR_OUT((char)(0x80 + (utf_hi_char << 6) + d)) ;
-=======
           HARDWARE_CHAR_OUT(pgm_read_byte_near(utf_recode + d + (utf_hi_char << 6) - 0x20));
         #else
           HARDWARE_CHAR_OUT(0x80 + (utf_hi_char << 6) + d);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
         #endif
       }
       else {
@@ -332,11 +288,7 @@
       }
     }
     else {
-<<<<<<< HEAD
-      HARDWARE_CHAR_OUT((char) c );
-=======
       HARDWARE_CHAR_OUT(c);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
     }
     seen_ce = false;
     return 1;
@@ -359,15 +311,6 @@
       else if (seen_d5) {
         d &= 0x3F;
         if (!utf_hi_char && d == 1) {
-<<<<<<< HEAD
-          HARDWARE_CHAR_OUT((char) 0xA2); // Ё
-        }
-        else if (utf_hi_char == 1 && d == 0x11) {
-          HARDWARE_CHAR_OUT((char)0xB5); // ё
-        }
-        else {
-          HARDWARE_CHAR_OUT((char)pgm_read_byte_near(utf_recode + d + (utf_hi_char << 6) - 0x10));
-=======
           HARDWARE_CHAR_OUT(0xA2); // Ё
         }
         else if (utf_hi_char == 1 && d == 0x11) {
@@ -375,7 +318,6 @@
         }
         else {
           HARDWARE_CHAR_OUT(pgm_read_byte_near(utf_recode + d + (utf_hi_char << 6) - 0x10));
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
         }
       }
       else {
@@ -383,11 +325,7 @@
       }
     }
     else {
-<<<<<<< HEAD
-      HARDWARE_CHAR_OUT((char) c );
-=======
       HARDWARE_CHAR_OUT(c);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
     }
     seen_d5 = false;
     return 1;
@@ -408,15 +346,9 @@
       else if (seen_d5) {
         d &= 0x3Fu;
         #ifndef MAPPER_ONE_TO_ONE
-<<<<<<< HEAD
-          HARDWARE_CHAR_OUT((char)pgm_read_byte_near(utf_recode + d + (utf_hi_char << 6) - 0x20));
-        #else
-          HARDWARE_CHAR_OUT((char)(0xA0u + (utf_hi_char << 6) + d)) ;
-=======
           HARDWARE_CHAR_OUT(pgm_read_byte_near(utf_recode + d + (utf_hi_char << 6) - 0x20));
         #else
           HARDWARE_CHAR_OUT(0xA0u + (utf_hi_char << 6) + d);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
         #endif
       }
       else {
@@ -424,11 +356,7 @@
       }
     }
     else {
-<<<<<<< HEAD
-      HARDWARE_CHAR_OUT((char) c );
-=======
       HARDWARE_CHAR_OUT(c);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
     }
     seen_d5 = false;
     return 1;
@@ -454,20 +382,6 @@
       else if (seen_e3 && seen_82_83) {
         d &= 0x3F;
         #ifndef MAPPER_ONE_TO_ONE
-<<<<<<< HEAD
-          HARDWARE_CHAR_OUT((char)pgm_read_byte_near(utf_recode + d + (utf_hi_char << 6) - 0x20));
-        #else
-          HARDWARE_CHAR_OUT((char)(0x80 + (utf_hi_char << 6) + d)) ;
-        #endif
-      }
-      else {
-        HARDWARE_CHAR_OUT((char) '?' );
-      }
-    }
-    else {
-      HARDWARE_CHAR_OUT((char) c );
-    }
-=======
           HARDWARE_CHAR_OUT(pgm_read_byte_near(utf_recode + d + (utf_hi_char << 6) - 0x20));
         #else
           HARDWARE_CHAR_OUT(0x80 + (utf_hi_char << 6) + d);
@@ -479,7 +393,6 @@
     else
       HARDWARE_CHAR_OUT(c);
 
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
     seen_e3 = false;
     seen_82_83 = false;
     return 1;
@@ -523,11 +436,7 @@
           case 0x98u ... 0x99u: d -= 20; break; //Ę i ę
           default: d = '?';
         }
-<<<<<<< HEAD
-        HARDWARE_CHAR_OUT((char)d) ;
-=======
         HARDWARE_CHAR_OUT(d);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
       }
       else if (seen_c5) {
         switch(d) {
@@ -536,11 +445,7 @@
           case 0xB9u ... 0xBCu: d -= 0x2Bu; break; //Ź - ż
           default: d = '?';
         }
-<<<<<<< HEAD
-        HARDWARE_CHAR_OUT((char)d) ;
-=======
         HARDWARE_CHAR_OUT(d);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
       }
       else if (seen_c3) {
         switch(d) {
@@ -548,15 +453,6 @@
           case 0xB3u: d = 0x8Bu; break; //ó
           d = '?';
         }
-<<<<<<< HEAD
-        HARDWARE_CHAR_OUT((char)d) ;
-      }
-
-    }
-    else {
-      HARDWARE_CHAR_OUT((char) c );
-    }
-=======
         HARDWARE_CHAR_OUT(d);
       }
 
@@ -564,7 +460,6 @@
     else
       HARDWARE_CHAR_OUT(c);
 
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
     seen_c3 = seen_c4 = seen_c5 = false;
     return 1;
   }
@@ -619,11 +514,7 @@
           case 0x9Au ... 0x9Bu: d -= 10; break; // Ěě
           default: d = '?';
         }
-<<<<<<< HEAD
-        HARDWARE_CHAR_OUT((char)d) ;
-=======
         HARDWARE_CHAR_OUT(d);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
       }
       else if (seen_c5) {
         switch(d) {
@@ -635,11 +526,7 @@
           case 0xBDu ... 0xBEu: d -= 0x21u; break;  // Žž
           default: d = '?';
         }
-<<<<<<< HEAD
-        HARDWARE_CHAR_OUT((char)d) ;
-=======
         HARDWARE_CHAR_OUT(d);
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
       }
       else if (seen_c3) {
         switch(d) {
@@ -657,15 +544,6 @@
           case 0xBDu: d = 0x8Bu; break;  // ý
           default: d = '?';
         }
-<<<<<<< HEAD
-        HARDWARE_CHAR_OUT((char)d) ;
-      }
-
-    }
-    else {
-      HARDWARE_CHAR_OUT((char) c );
-    }
-=======
         HARDWARE_CHAR_OUT(d);
       }
 
@@ -673,17 +551,12 @@
     else
       HARDWARE_CHAR_OUT(c);
 
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
     seen_c3 = seen_c4 = seen_c5 = false;
     return 1;
   }
 
 #elif ENABLED(MAPPER_C3C4C5_SK)
 
-<<<<<<< HEAD
-  // TBD
-  #error "No mapping for Slovak at this time. Use MAPPER_NON."
-=======
   /**
    * Á C3 81 = 80
    * Ä C3 84 = 81
@@ -780,7 +653,6 @@
     seen_c3 = seen_c4 = seen_c5 = false;
     return 1;
   }
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
 
 #else
 

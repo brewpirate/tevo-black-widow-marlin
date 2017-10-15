@@ -235,11 +235,7 @@
 
 /**
  * Part-Cooling Fan Multiplexer
-<<<<<<< HEAD
- * 
-=======
  *
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
  * This feature allows you to digitally multiplex the fan output.
  * The multiplexer is automatically switched at tool-change.
  * Set FANMUX[012]_PINs below for up to 2, 4, or 8 multiplexed fans.
@@ -527,11 +523,7 @@
 
   // SD Card Sorting options
   #if ENABLED(SDCARD_SORT_ALPHA)
-<<<<<<< HEAD
-    #define SDSORT_LIMIT       40     // Maximum number of sorted items (10-256).
-=======
     #define SDSORT_LIMIT       40     // Maximum number of sorted items (10-256). Costs 27 bytes each.
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
     #define FOLDER_SORTING     -1     // -1=above  0=none  1=below
     #define SDSORT_GCODE       false  // Allow turning sorting on/off with LCD and M34 g-code.
     #define SDSORT_USES_RAM    false  // Pre-allocate a static array for faster pre-sorting.
@@ -622,46 +614,10 @@
  */
 #define BABYSTEPPING
 #if ENABLED(BABYSTEPPING)
-<<<<<<< HEAD
-  #define BABYSTEP_XY              // Also enable X/Y Babystepping. Not supported on DELTA!
-  #define BABYSTEP_INVERT_Z false  // Change if Z babysteps should go the other way
-  #define BABYSTEP_MULTIPLICATOR 1 // Babysteps are very small. Increase for faster motion.
-  //#define BABYSTEP_ZPROBE_OFFSET // Enable to combine M851 and Babystepping
-  //#define DOUBLECLICK_FOR_Z_BABYSTEPPING // Double-click on the Status Screen for Z Babystepping.
-  #define DOUBLECLICK_MAX_INTERVAL 1250 // Maximum interval between clicks, in milliseconds.
-                                        // Note: Extra time may be added to mitigate controller latency.
-=======
-  //#define BABYSTEP_XY              // Also enable X/Y Babystepping. Not supported on DELTA!
-  #define BABYSTEP_INVERT_Z false    // Change if Z babysteps should go the other way
-  #define BABYSTEP_MULTIPLICATOR 100 // Babysteps are very small. Increase for faster motion.
-  //#define BABYSTEP_ZPROBE_OFFSET   // Enable to combine M851 and Babystepping
-  //#define DOUBLECLICK_FOR_Z_BABYSTEPPING // Double-click on the Status Screen for Z Babystepping.
-  #define DOUBLECLICK_MAX_INTERVAL 1250 // Maximum interval between clicks, in milliseconds.
-                                        // Note: Extra time may be added to mitigate controller latency.
-  //#define BABYSTEP_ZPROBE_GFX_OVERLAY // Enable graphical overlay on Z-offset editor
-  //#define BABYSTEP_ZPROBE_GFX_REVERSE // Reverses the direction of the CW/CCW indicators
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
 #endif
 
 // @section extruder
 
-<<<<<<< HEAD
-// extruder advance constant (s2/mm3)
-//
-// advance (steps) = STEPS_PER_CUBIC_MM_E * EXTRUDER_ADVANCE_K * cubic mm per second ^ 2
-//
-// Hooke's law says:    force = k * distance
-// Bernoulli's principle says:  v ^ 2 / 2 + g . h + pressure / density = constant
-// so: v ^ 2 is proportional to number of steps we advance the extruder
-//#define ADVANCE
-
-#if ENABLED(ADVANCE)
-  #define EXTRUDER_ADVANCE_K .0
-  #define D_FILAMENT 2.85
-#endif
-
-=======
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
 /**
  * Implementation of linear pressure control
  *
@@ -778,11 +734,7 @@
 #define MAX_CMD_SIZE 96
 #define BUFSIZE 4
 
-<<<<<<< HEAD
-// Transfer Buffer Size
-=======
 // Transmission to Host Buffer Size
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
 // To save 386 bytes of PROGMEM (and TX_BUFFER_SIZE+3 bytes of RAM) set to 0.
 // To buffer a simple "ok" you need 4 bytes.
 // For ADVANCED_OK (M105) you need 32 bytes.
@@ -791,8 +743,6 @@
 // :[0, 2, 4, 8, 16, 32, 64, 128, 256]
 #define TX_BUFFER_SIZE 128
 
-<<<<<<< HEAD
-=======
 // Host Receive Buffer Size
 // Without XON/XOFF flow control (see SERIAL_XON_XOFF below) 32 bytes should be enough.
 // To use flow control, set this buffer size to at least 1024 bytes.
@@ -815,7 +765,6 @@
   //#define SERIAL_STATS_DROPPED_RX
 #endif
 
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
 // Enable an emergency-command parser to intercept certain commands as they
 // enter the serial receive buffer, so they cannot be blocked.
 // Currently handles M108, M112, M410
@@ -1339,10 +1288,7 @@
 #if ENABLED(CUSTOM_USER_MENUS)
   #define USER_SCRIPT_DONE "M117 User Script Done"
   #define USER_SCRIPT_AUDIBLE_FEEDBACK
-<<<<<<< HEAD
-=======
   //#define USER_SCRIPT_RETURN  // Return to status screen after a script
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
 
   #define USER_DESC_1 "Home & UBL Info"
   #define USER_GCODE_1 "G28\nG29 W"
@@ -1452,31 +1398,6 @@
 #endif // I2C_POSITION_ENCODERS
 
 /**
-<<<<<<< HEAD
-  * Debug LED's using an 8x8 LED Matrix driven by a Max7219 chip.   Fully assembled versions are available on
-  * eBay for under $2.00 (including shipping) and only require 3 signal wires.
-  *
-  * Check out auctions similar to this: https://www.ebay.com/sch/i.html?_from=R40&_trksid=m570.l1313&_nkw=332349290049&_sacat=0
-  */
-
-//#define MAX7219_DEBUG
-#if ENABLED(MAX7219_DEBUG)
-  #define Max7219_clock   64  // 77 on Re-ARM       // Configuration of the 3 pins to control the display
-  #define Max7219_data_in 57  // 78 on Re-ARM
-  #define Max7219_load    44  // 79 on Re-ARM
-
-  /*
-   * These are sample debug features that can be turned on and configured for your use.
-   * The developer will need to manage the use of the various LED's in the 8x8 matrix to avoid conflicts.
-   */
-  #define MAX7219_DEBUG_PRINTER_ALIVE    // Blink corner LED of 8x8 matrix from idle() routine if firmware is functioning
-  #define MAX7219_DEBUG_STEPPER_HEAD  3  // Display row position of stepper queue head on this line and the next line of LED matrix
-  #define MAX7219_DEBUG_STEPPER_TAIL  5  // Display row position of stepper queue tail on this line and the next line of LED matrix
-
-  #define MAX7219_DEBUG_STEPPER_QUEUE 0  // Display row position of stepper queue depth on this line and the next line of LED matrix
-                                         // If you have stuttering on your Delta printer, this option may help you understand how
-                                         // various tweaks you make to your configuration are affecting the printer.
-=======
  * MAX7219 Debug Matrix
  *
  * Add support for a low-cost 8x8 LED Matrix based on the Max7219 chip, which can be used as a status
@@ -1502,7 +1423,6 @@
   #define MAX7219_DEBUG_STEPPER_QUEUE 0  // Show the current stepper queue depth on this and the next LED matrix row
                                          // If you experience stuttering, reboots, etc. this option can reveal how
                                          // tweaks made to the configuration are affecting the printer in real-time.
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
 #endif
 
 #endif // CONFIGURATION_ADV_H

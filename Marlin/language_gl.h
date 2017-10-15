@@ -24,11 +24,7 @@
  * Galician language (ISO "gl")
  *
  * LCD Menu Messages
-<<<<<<< HEAD
- * See also https://github.com/MarlinFirmware/Marlin/wiki/LCD-Language
-=======
  * See also http://marlinfw.org/docs/development/lcd_language.html
->>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
  *
  */
 #ifndef LANGUAGE_GL_H
