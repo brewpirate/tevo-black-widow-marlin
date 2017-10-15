@@ -25,7 +25,7 @@
  * UTF-8 for Graphical Display
  *
  * LCD Menu Messages
- * See also https://github.com/MarlinFirmware/Marlin/wiki/LCD-Language
+ * See also http://marlinfw.org/docs/development/lcd_language.html
  *
  * Translated by Michal Holeš, Farma MaM
  * http://www.facebook.com/farmamam
@@ -34,12 +34,17 @@
 #ifndef LANGUAGE_SK_UTF_H
 #define LANGUAGE_SK_UTF_H
 
+<<<<<<< HEAD
 #define MAPPER_NON
 #define DISPLAY_CHARSET_ISO10646_1
 
 // TBD
 //#define MAPPER_C3C4C5_SK
 //#define DISPLAY_CHARSET_ISO10646_SK
+=======
+#define MAPPER_C3C4C5_SK
+#define DISPLAY_CHARSET_ISO10646_SK
+>>>>>>> 8dc10fb4c206e4bbcbe9ea21a25d5a9802aa54a8
 
 #define WELCOME_MSG                         MACHINE_NAME _UxGT(" pripravená.")
 #define MSG_BACK                            _UxGT("Naspať")
