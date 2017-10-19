@@ -1,6 +1,31 @@
 # Marlin 3D Printer Firmware
 <img align="right" src="../../raw/1.1.x/buildroot/share/pixmaps/logo/marlin-250.png" />
 
+## Custom Tevo Black Widow Changes
+
+- EEPROM_SETTINGS
+- INDIVIDUAL_AXIS_HOMING_MENU
+- QUICK_HOME
+- WATCH_TEMP_PERIOD 60  
+- LCD_INFO_MENU
+- BABYSTEPPING
+- DOUBLECLICK_FOR_Z_BABYSTEPPING
+- Hotend Auto Cooling
+
+#define TEMP_SENSOR_0 5 // e3d Semitec 104GT2 thermistor cartridge 
+PID_AUTOTUNE_MENU
+
+### Enable BLTouch
+- Uncomment `TEVO_BLTOUCH` in `Configuration.h`
+
+
+### BLTouch Features
+[AUTO_BED_LEVELING_BILINEAR](http://marlinfw.org/docs/gcode/G029-abl.html)
+
+### Endstop Features
+- [MESH_BED_LEVELING](http://marlinfw.org/docs/gcode/G029-mbl.html): Bed leveling without a probe
+- [LCD_BED_LEVELING](http://marlinfw.org/docs/configuration/configuration.html#lcd-bed-leveling): Use LCD to level bed without host software.
+
 ## Marlin 1.1
 
 Marlin 1.1 represents an evolutionary leap over Marlin 1.0.2. It is the result of over two years of effort by several volunteers around the world who have paid meticulous and sometimes obsessive attention to every detail. For this release we focused on code quality, performance, stability, and overall user experience. Several new features have also been added, many of which require no extra hardware.
@@ -9,8 +34,8 @@ For complete Marlin documentation click over to the [Marlin Homepage <marlinfw.o
 
 ## Stable Release Branch
 
-This Release branch contains the latest tagged version of Marlin (currently 1.1.5 – August 2017).
-
+This Release branch contains the latest tagged version of Marlin (currently 1.1.6 – October 2017).
+    
 Previous releases of Marlin include [1.0.2-2](https://github.com/MarlinFirmware/Marlin/tree/1.0.2-2) (December 2016) and [1.0.1](https://github.com/MarlinFirmware/Marlin/tree/1.0.1) (December 2014). Any version of Marlin prior to 1.0.1 (when we started tagging versions) can be collectively referred to as Marlin 1.0.0.
 
 ## Contributing to Marlin
