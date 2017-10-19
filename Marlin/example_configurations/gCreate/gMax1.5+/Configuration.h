@@ -1217,7 +1217,11 @@
  *  - Click the controller to view the LCD menu
  *  - The LCD will display Japanese, Western, or Cyrillic text
  *
+ * See http://marlinfw.org/docs/development/lcd_language.html
+ *
+ * :['JAPANESE', 'WESTERN', 'CYRILLIC']
  */
+#define DISPLAY_CHARSET_HD44780 JAPANESE
 
 /**
  * LCD TYPE

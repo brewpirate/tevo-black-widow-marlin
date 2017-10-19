@@ -40,11 +40,12 @@
 #define CONFIGURATION_H_VERSION 010100
 
 /**
+ * Enable BLTouch with
  * This is an adopted method of enabling the BLTouch probe by dot-bob
  * https://github.com/dot-bob/Marlin-Tevo-Black-Widow
  */
 
-//#define TEVO_BLTOUCH
+#define TEVO_BLTOUCH
 
 
 
@@ -304,7 +305,7 @@
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
 #define TEMP_SENSOR_4 0
-#define TEMP_SENSOR_BED 11
+#define TEMP_SENSOR_BED 11 // Stock bed thermistor
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
 #define DUMMY_THERMISTOR_998_VALUE 25
@@ -366,11 +367,9 @@
   #define K1 0.95 //smoothing factor within the PID
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
-
-  // Tevo Black Widow - derived by Simons
-   #define  DEFAULT_Kp 22.02
-   #define  DEFAULT_Ki 2.12
-   #define  DEFAULT_Kd 52.16
+   #define  DEFAULT_Kp 16.83
+   #define  DEFAULT_Ki 1.47
+   #define  DEFAULT_Kd 48.26
 
   // Ultimaker
   //#define  DEFAULT_Kp 22.2
@@ -520,8 +519,11 @@
 #define X_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Z_MIN_PROBE_ENDSTOP_INVERTING false // set to true to invert the logic of the probe.
-
+#ifdef TEVO_BLTOUCH
+	#define Z_MIN_PROBE_ENDSTOP_INVERTING true // BLTouch
+#else
+	#define Z_MIN_PROBE_ENDSTOP_INVERTING false // set to true to invert the logic of the probe.
+#endif
 // Enable this feature if all enabled endstop pins are interrupt-capable.
 // This will remove the need to poll the interrupt pins, saving many CPU cycles.
 //#define ENDSTOP_INTERRUPTS_FEATURE
@@ -551,7 +553,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {160,160,3200,935}  // Tevo Black Widow with stock extruder
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {160,160,3200,935}  // Titan with Stepper 
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -566,7 +568,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 1500, 1000, 100, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 1500, 1000, 100, 10000 } // More X accel since we have less mass
 
 /**
  * Default Acceleration (change/s) change = mm/s
@@ -578,7 +580,7 @@
  */
 #define DEFAULT_ACCELERATION          1000    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  1500    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   1500    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION   1000    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk (mm/s)
@@ -660,10 +662,9 @@
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
- #ifdef TEVO_BLTOUCH
+#ifdef TEVO_BLTOUCH
   #define BLTOUCH
 #endif
-
 #if ENABLED(BLTOUCH)
   //#define BLTOUCH_DELAY 375   // (ms) Enable and increase if needed
 #endif
@@ -709,12 +710,13 @@
  *      O-- FRONT --+
  *    (0,0)
  */
-#define X_PROBE_OFFSET_FROM_EXTRUDER 48  // X offset: -left  +right  [of the nozzle]
-#define Y_PROBE_OFFSET_FROM_EXTRUDER -18  // Y offset: -front +behind [the nozzle]
+#define X_PROBE_OFFSET_FROM_EXTRUDER 10  // X offset: -left  +right  [of the nozzle]
+#define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front +behind [the nozzle]
 #define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below +above  [the nozzle]
 
 // X and Y axis travel speed (mm/m) between probes
-#define XY_PROBE_SPEED 9000 // 150 mm/s
+#define XY_PROBE_SPEED 8000
+
 // Speed for the first approach when double-probing (with PROBE_DOUBLE_TOUCH)
 #define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z
 
@@ -991,16 +993,17 @@
  * Use the LCD controller for bed leveling
  * Requires MESH_BED_LEVELING or PROBE_MANUALLY
  */
-#define LCD_BED_LEVELING
+#ifndef TEVO_BLTOUCH
+  #define LCD_BED_LEVELING
+#endif
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MBL_Z_STEP 0.025    // Step size while manually probing Z axis.
   #define LCD_PROBE_Z_RANGE 4 // Z Range centered on Z_MIN_POS for LCD Z adjustment
-  #define LEVEL_BED_CORNERS   // Add an option to move between corners
 #endif
 
 // Add a menu item to move between bed corners for manual bed adjustment
-//#define LEVEL_BED_CORNERS
+#define LEVEL_BED_CORNERS
 
 /**
  * Commands to execute at the end of G29 probing.

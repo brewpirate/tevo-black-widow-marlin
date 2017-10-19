@@ -601,6 +601,15 @@
  */
 //#define BABYSTEPPING
 #if ENABLED(BABYSTEPPING)
+  //#define BABYSTEP_XY              // Also enable X/Y Babystepping. Not supported on DELTA!
+  #define BABYSTEP_INVERT_Z false    // Change if Z babysteps should go the other way
+  #define BABYSTEP_MULTIPLICATOR 100 // Babysteps are very small. Increase for faster motion.
+  //#define BABYSTEP_ZPROBE_OFFSET   // Enable to combine M851 and Babystepping
+  //#define DOUBLECLICK_FOR_Z_BABYSTEPPING // Double-click on the Status Screen for Z Babystepping.
+  #define DOUBLECLICK_MAX_INTERVAL 1250 // Maximum interval between clicks, in milliseconds.
+                                        // Note: Extra time may be added to mitigate controller latency.
+  //#define BABYSTEP_ZPROBE_GFX_OVERLAY // Enable graphical overlay on Z-offset editor
+  //#define BABYSTEP_ZPROBE_GFX_REVERSE // Reverses the direction of the CW/CCW indicators
 #endif
 
 // @section extruder
@@ -721,7 +730,11 @@
 #define MAX_CMD_SIZE 96
 #define BUFSIZE 4
 
+// Transmission to Host Buffer Size
+// To save 386 bytes of PROGMEM (and TX_BUFFER_SIZE+3 bytes of RAM) set to 0.
+// To buffer a simple "ok" you need 4 bytes.
 // For ADVANCED_OK (M105) you need 32 bytes.
+// For debug-echo: 128 bytes for the optimal speed.
 // Other output doesn't need to be that speedy.
 // :[0, 2, 4, 8, 16, 32, 64, 128, 256]
 #define TX_BUFFER_SIZE 0
@@ -1381,6 +1394,31 @@
 #endif // I2C_POSITION_ENCODERS
 
 /**
+ * MAX7219 Debug Matrix
+ *
+ * Add support for a low-cost 8x8 LED Matrix based on the Max7219 chip, which can be used as a status
+ * display. Requires 3 signal wires. Some useful debug options are included to demonstrate its usage.
+ *
+ * Fully assembled MAX7219 boards can be found on the internet for under $2(US).
+ * For example, see https://www.ebay.com/sch/i.html?_nkw=332349290049
+ */
+//#define MAX7219_DEBUG
+#if ENABLED(MAX7219_DEBUG)
+  #define MAX7219_CLK_PIN   64  // 77 on Re-ARM       // Configuration of the 3 pins to control the display
+  #define MAX7219_DIN_PIN   57  // 78 on Re-ARM
+  #define MAX7219_LOAD_PIN  44  // 79 on Re-ARM
+
+  /**
+   * Sample debug features
+   * If you add more debug displays, be careful to avoid conflicts!
+   */
+  #define MAX7219_DEBUG_PRINTER_ALIVE    // Blink corner LED of 8x8 matrix to show that the firmware is functioning
+  #define MAX7219_DEBUG_STEPPER_HEAD  3  // Show the stepper queue head position on this and the next LED matrix row
+  #define MAX7219_DEBUG_STEPPER_TAIL  5  // Show the stepper queue tail position on this and the next LED matrix row
+
+  #define MAX7219_DEBUG_STEPPER_QUEUE 0  // Show the current stepper queue depth on this and the next LED matrix row
+                                         // If you experience stuttering, reboots, etc. this option can reveal how
+                                         // tweaks made to the configuration are affecting the printer in real-time.
 #endif
 
 #endif // CONFIGURATION_ADV_H

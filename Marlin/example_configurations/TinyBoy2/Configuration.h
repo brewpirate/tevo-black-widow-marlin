@@ -811,8 +811,11 @@
 
 // @section homing
 
+//#define NO_MOTION_BEFORE_HOMING  // Inhibit movement until all axes have been homed
+
 //#define Z_HOMING_HEIGHT 4  // (in mm) Minimal z height before homing (G28) for Z clearance above the bed, clamps, ...
                              // Be sure you have this distance over your Z_MAX_POS in case.
+
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
 #define X_HOME_DIR 1
@@ -1256,7 +1259,11 @@
  *  - Click the controller to view the LCD menu
  *  - The LCD will display Japanese, Western, or Cyrillic text
  *
+ * See http://marlinfw.org/docs/development/lcd_language.html
+ *
+ * :['JAPANESE', 'WESTERN', 'CYRILLIC']
  */
+#define DISPLAY_CHARSET_HD44780 JAPANESE
 
 /**
  * LCD TYPE

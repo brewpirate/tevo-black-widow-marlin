@@ -1504,6 +1504,8 @@
 //
 //#define OLED_PANEL_TINYBOY2
 
+//
+// Makeboard 3D Printer Parts 3D Printer Mini Display 1602 Mini Controller
 // https://www.aliexpress.com/item/Micromake-Makeboard-3D-Printer-Parts-3D-Printer-Mini-Display-1602-Mini-Controller-Compatible-with-Ramps-1/32765887917.html
 //
 //#define MAKEBOARD_MINI_2_LINE_DISPLAY_1602
@@ -1533,6 +1535,7 @@
 
 //=============================================================================
 //=============================== Extra Features ==============================
+//=============================================================================
 
 // @section extras
 

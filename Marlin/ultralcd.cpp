@@ -460,6 +460,13 @@ uint16_t max_display_update_time = 0;
     #define manual_move_e_index 0
   #endif
 
+  #if IS_KINEMATIC
+    bool processing_manual_move = false;
+    float manual_move_offset = 0.0;
+  #else
+    constexpr bool processing_manual_move = false;
+  #endif
+
   #if PIN_EXISTS(SD_DETECT)
     uint8_t lcd_sd_status;
   #endif
@@ -2842,6 +2849,9 @@ void kill_screen(const char* lcd_msg) {
         if (axis != Z_AXIS) {
           max = SQRT(sq((float)(DELTA_PRINTABLE_RADIUS)) - sq(current_position[Y_AXIS - axis])); // (Y_AXIS - axis) == the other axis
           min = -max;
+        }
+      #endif
+
       // Get the new position
       const float diff = float((int32_t)encoderPosition) * move_menu_scale;
       #if IS_KINEMATIC

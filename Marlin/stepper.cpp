@@ -656,6 +656,7 @@ void Stepper::isr() {
   } // steps_loop
 
   #if ENABLED(LIN_ADVANCE)
+
     if (current_block->use_advance_lead) {
       const int delta_adv_steps = current_estep_rate[TOOL_E_INDEX] - current_adv_steps[TOOL_E_INDEX];
       current_adv_steps[TOOL_E_INDEX] += delta_adv_steps;

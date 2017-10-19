@@ -1038,7 +1038,10 @@ void servo_init() {
       static uint16_t nextLed = 0;
 
       pixels.setBrightness(p);
+      if (!isSequence)
+        set_neopixel_color(color);
       else {
+        pixels.setPixelColor(nextLed, color);
         pixels.show();
         if (++nextLed >= pixels.numPixels()) nextLed = 0;
         return;

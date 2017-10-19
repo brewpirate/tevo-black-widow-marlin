@@ -421,6 +421,7 @@
       CRITICAL_SECTION_START;
         bool emty = (tx_buffer.head == tx_buffer.tail);
       CRITICAL_SECTION_END;
+
       // If the buffer and the data register is empty, just write the byte
       // to the data register and be done. This shortcut helps
       // significantly improve the effective datarate at high (>
